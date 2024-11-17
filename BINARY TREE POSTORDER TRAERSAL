@@ -1,0 +1,17 @@
+void postorder(struct TreeNode* root, int* result, int* index) {
+    if (root == NULL) return;
+    postorder(root->left, result, index);
+    postorder(root->right, result, index);
+    result[(*index)++] = root->val;
+}
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* postorderTraversal(struct TreeNode* root, int* returnSize) {
+    int* result = (int*)malloc(1000 * sizeof(int)); // Assuming the tree has at most 1000 nodes
+    int index = 0;
+    postorder(root, result, &index);
+    *returnSize = index;
+    return result;
+}
