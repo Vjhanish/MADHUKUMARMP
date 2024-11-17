@@ -1,0 +1,17 @@
+void preorder(struct TreeNode* root, int* result, int* index) {
+    if (root == NULL) return;
+    result[(*index)++] = root->val;
+    preorder(root->left, result, index);
+    preorder(root->right, result, index);
+}
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* preorderTraversal(struct TreeNode* root, int* returnSize) {
+    int* result = (int*)malloc(1000 * sizeof(int)); // Assuming the tree has at most 1000 nodes
+    int index = 0;
+    preorder(root, result, &index);
+    *returnSize = index;
+    return result;
+}
