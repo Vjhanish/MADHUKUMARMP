@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isPalindrome(int x) {
+    // Negative numbers are not palindromes
+    if (x < 0) {
+        return false;
+    }
+
+    // Find the reverse of the number
+    int original = x;
+    int reversed = 0;
+
+    while (x != 0) {
+        int digit = x % 10;
+        reversed = reversed * 10 + digit;
+        x /= 10;
+    }
+
+    // Check if the original number is equal to its reverse
+    return original == reversed;
+}
