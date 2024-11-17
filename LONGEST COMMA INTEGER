@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <string.h>
+
+char* longestCommonPrefix(char** strs, int strsSize) {
+    if (strsSize == 0) return "";
+
+    // Start with the first string as the prefix
+    char* prefix = strs[0];
+    for (int i = 1; i < strsSize; i++) {
+        // Compare the prefix with each string
+        while (strstr(strs[i], prefix) != strs[i]) {
+            // Reduce the prefix by one character at a time
+            prefix[strlen(prefix) - 1] = '\0';
+            if (strlen(prefix) == 0) return "";
+        }
+    }
+    return prefix;
+}
