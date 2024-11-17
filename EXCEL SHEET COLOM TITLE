@@ -1,0 +1,23 @@
+#include <stdlib.h>
+
+char* convertToTitle(int columnNumber) {
+    char* result = (char*)malloc(10 * sizeof(char)); // Assuming the result will not exceed 10 characters
+    int index = 0;
+
+    while (columnNumber > 0) {
+        columnNumber--; // Adjust to 0-based index
+        result[index++] = 'A' + (columnNumber % 26);
+        columnNumber /= 26;
+    }
+
+    result[index] = '\0';
+
+    // Reverse the result string
+    for (int i = 0; i < index / 2; i++) {
+        char temp = result[i];
+        result[i] = result[index - i - 1];
+        result[index - i - 1] = temp;
+    }
+
+    return result;
+}
